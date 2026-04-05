@@ -1,0 +1,149 @@
+.date-picker-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.date-range-picker {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 16px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+}
+
+.picker-icon {
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+}
+
+.picker-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.picker-group label {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+}
+
+.picker-group input {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    outline: none;
+    cursor: pointer;
+}
+
+.picker-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--border);
+}
+
+.reset-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    height: 48px;
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    background: var(--glass);
+}
+
+.reset-btn:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+    background: var(--primary-glow);
+}
+
+.picker-group input::-webkit-calendar-picker-indicator {
+    filter: var(--calendar-filter, invert(0.5));
+    cursor: pointer;
+}
+
+[data-theme='dark'] {
+    --calendar-filter: invert(1);
+}
+
+@media (max-width: 768px) {
+    .date-picker-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 10px;
+        align-items: stretch;
+        justify-content: space-between;
+    }
+
+    .date-range-picker {
+        flex: 1;
+        padding: 4px 12px;
+        height: 54px;
+        gap: 12px;
+        justify-content: space-between;
+    }
+
+    .picker-group {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .picker-group label {
+        font-size: 0.65rem;
+        margin-bottom: 2px;
+    }
+
+    .picker-group input {
+        font-size: 0.85rem;
+        width: 100%;
+        padding: 0;
+    }
+
+    .picker-divider {
+        margin: 0 8px;
+    }
+
+    .reset-btn {
+        width: auto;
+        padding: 0 16px;
+        height: 54px;
+        flex-shrink: 0;
+        justify-content: center;
+        border-radius: 12px;
+        font-size: 0.95rem;
+    }
+
+    .reset-btn span {
+        display: inline;
+    }
+}
+
+@media (max-width: 480px) {
+    .date-range-picker {
+        padding: 4px 8px;
+        gap: 8px;
+    }
+
+    .picker-divider {
+        margin: 0 4px;
+    }
+
+    .reset-btn {
+        padding: 0 12px;
+    }
+}
