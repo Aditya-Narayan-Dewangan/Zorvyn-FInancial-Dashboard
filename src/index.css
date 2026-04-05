@@ -1,0 +1,168 @@
+:root {
+    font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: light dark;
+    --primary: #38bdf8;
+    --primary-glow: rgba(56, 189, 248, 0.3);
+    --secondary: #8b5cf6;
+    --success: #22c55e;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --accent: #f472b6;
+}
+
+:root,
+[data-theme='dark'] {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border: #334155;
+    --glass: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --scrollbar-track: #0f172a;
+    --scrollbar-thumb: #334155;
+    --scrollbar-thumb-hover: #475569;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #0f172a;
+}
+
+[data-theme='light'] {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --border: #e2e8f0;
+    --glass: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(0, 0, 0, 0.05);
+    --scrollbar-track: #f1f5f9;
+    --scrollbar-thumb: #cbd5e1;
+    --scrollbar-thumb-hover: #94a3b8;
+    color: #1e293b;
+    background-color: #f8fafc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    min-width: 320px;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: var(--bg-main);
+    color: var(--text-primary);
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+#root {
+    width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-primary);
+}
+
+p {
+    color: var(--text-secondary);
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Glassmorphism utility */
+.glass {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border-radius: 16px;
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+/* View Transition API styles for theme wave */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+/* Dark -> Light: Reveal new (light) spreading */
+[data-transition-direction='to-light']::view-transition-old(root) {
+    z-index: 1;
+}
+
+[data-transition-direction='to-light']::view-transition-new(root) {
+    z-index: 2147483647;
+    animation: 600ms cubic-bezier(0.4, 0, 0.2, 1) both reveal-new;
+}
+
+/* Light -> Dark: Old (light) shrinking to reveal new (dark) */
+[data-transition-direction='to-dark']::view-transition-old(root) {
+    z-index: 2147483647;
+    animation: 600ms cubic-bezier(0.4, 0, 0.2, 1) both shrink-old;
+}
+
+[data-transition-direction='to-dark']::view-transition-new(root) {
+    z-index: 1;
+}
+
+@keyframes reveal-new {
+    from {
+        clip-path: circle(0% at var(--ripple-x) var(--ripple-y));
+    }
+
+    to {
+        clip-path: circle(150% at var(--ripple-x) var(--ripple-y));
+    }
+}
+
+@keyframes shrink-old {
+    from {
+        clip-path: circle(150% at var(--ripple-x) var(--ripple-y));
+    }
+
+    to {
+        clip-path: circle(0% at var(--ripple-x) var(--ripple-y));
+    }
+}

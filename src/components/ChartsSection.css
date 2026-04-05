@@ -1,0 +1,91 @@
+.charts-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 24px;
+}
+
+.chart-card {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.chart-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.chart-header p {
+    font-size: 0.9rem;
+}
+
+.chart-container {
+    flex: 1;
+    min-height: 300px;
+}
+
+.insights-card {
+    padding: 24px;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(56, 189, 248, 0.1));
+}
+
+.insights-card h3 {
+    margin-bottom: 24px;
+}
+
+.insights-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.insight-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.insight-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--bg-card-hover);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.insight-text .label {
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.insight-text .value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+@media (max-width: 1400px) {
+    .charts-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .insights-card {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 1024px) {
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .insights-card {
+        grid-column: span 1;
+    }
+}
